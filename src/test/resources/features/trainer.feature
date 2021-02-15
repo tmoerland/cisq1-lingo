@@ -24,6 +24,13 @@ Feature: Training for Lingo
       | 6               | 7           |
       | 7               | 5           |
 
+    #Failure path
+    Scenario: Cannot start a round if previous round was lost
+      Given I am playing a game
+      And I have lost the round
+      Then I cannot start a new round
+
+
   Scenario Outline: Check guessed word
     Given the word to guess this round is "<word>"
     When I take my "<guess>"
