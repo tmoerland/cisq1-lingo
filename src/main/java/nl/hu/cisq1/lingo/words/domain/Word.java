@@ -1,9 +1,12 @@
 package nl.hu.cisq1.lingo.words.domain;
 
+import lombok.Getter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+@Getter
 @Entity(name = "words")
 public class Word {
     @Id
@@ -15,13 +18,5 @@ public class Word {
     public Word(String word) {
         this.value = word;
         this.length = word.length();
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public Integer getLength() {
-        return length;
     }
 }
