@@ -23,3 +23,16 @@ Feature: Training for Lingo
       | 5               | 6           |
       | 6               | 7           |
       | 7               | 5           |
+
+  Scenario Outline: Check guessed word
+    Given the word to guess this round is "<word>"
+    When I take my "<guess>"
+    Then I will get "<feedback>" per character
+
+    Examples:
+      | word | guess  | feedback                                      |
+      |BAARD | BERGEN | INVALID, INVALID, INVALID, INVALID, INVALID   |
+      |BAARD | BONJE  | CORRECT, ABSENT, ABSENT, ABSENT, ABSENT       |
+      |BAARD | BARST  | CORRECT, CORRECT, PRESENT, ABSENT, ABSENT     |
+      |BAARD | DRAAD  | ABSENT, PRESENT, CORRECT, PRESENT, CORRECT    |
+      |BAARD | BAARD  | CORRECT, CORRECT, CORRECT, CORRECT, CORRECT   |
