@@ -10,3 +10,16 @@ Feature: Training for Lingo
     And I should see the first letter
     And my score is "0"
 
+  Scenario Outline: Start a new round
+    Given I am playing a game
+    And the previous round was won
+    And the last word had "<previous length>" letters
+    When I start a new round
+    Then the word to guess has "<next length>" letters
+    And I should see the first letter
+
+    Examples:
+      | previous length | next length |
+      | 5               | 6           |
+      | 6               | 7           |
+      | 7               | 5           |
