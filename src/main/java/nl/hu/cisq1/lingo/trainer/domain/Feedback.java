@@ -4,6 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import nl.hu.cisq1.lingo.trainer.domain.exception.InvalidFeedbackException;
 
 import java.util.List;
 
@@ -15,9 +16,12 @@ public class Feedback {
     private final List<Mark> marks;
     private String attempt; //TODO: update domainmodel
 
-    public Feedback(List<Mark> marks, String attempt) {
+    public Feedback(List<Mark> marks, String attempt) throws InvalidFeedbackException {
         this.marks = marks;
         this.attempt = attempt;
+        if (this.marks.size() != this.attempt.length()){
+            throw new InvalidFeedbackException();
+        }
     }
 
     public boolean isWordGuessed(){
