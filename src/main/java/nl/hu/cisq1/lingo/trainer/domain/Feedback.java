@@ -33,4 +33,19 @@ public class Feedback {
         return this.marks.stream()
                 .noneMatch(mark -> mark.equals(Mark.INVALID));
     }
+
+    public String giveHint(String previousHint){
+        StringBuilder hint = new StringBuilder();
+
+        for(int i = 0; i < this.attempt.length(); i++){
+            if(this.marks.get(i).equals(Mark.CORRECT)) {
+                hint.append(this.attempt.charAt(i));
+            } else if(previousHint.charAt(i) != '.'){
+                hint.append(previousHint.charAt(i));
+            } else {
+                hint.append(".");
+            }
+        }
+        return hint.toString();
+    }
 }
