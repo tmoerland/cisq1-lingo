@@ -30,6 +30,23 @@ public class FeedbackTest {
     @Test
     @DisplayName("Exception is thrown if length of marks-list doesn't correspond with the word length")
     void invalidMarkLength() {
-        assertThrows(InvalidFeedbackException.class, () -> new Feedback(List.of(Mark.CORRECT), "woord"));
+        assertThrows(InvalidFeedbackException.class, () -> new Feedback(List.of(Mark.CORRECT), "apple"));
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideHintExamples")
+    @DisplayName("Give correct feedback based on input")
+    void giveHint(String attempt, String expectedHint, List<Mark> marks) {
+        Feedback feedback = new Feedback(marks, attempt);
+        assertEquals(expectedHint, feedback.giveHint(".....")); //Starting with an "empty" first hint
+    }
+
+    static Stream<Arguments> provideHintExamples(){
+        return Stream.of(
+                Arguments.of("apple", "apple", List.of(Mark.CORRECT, Mark.CORRECT, Mark.CORRECT, Mark.CORRECT, Mark.CORRECT)),  //wordToGuess: apple
+                Arguments.of("apple", "ap.l.", List.of(Mark.CORRECT, Mark.CORRECT, Mark.ABSENT, Mark.CORRECT, Mark.ABSENT)),    //wordToGuess: aptly
+                Arguments.of("apple", "a...e", List.of(Mark.CORRECT, Mark.PRESENT, Mark.ABSENT, Mark.ABSENT, Mark.CORRECT)),    //wordToGuess: alive
+                Arguments.of("apple", "a....", List.of(Mark.CORRECT, Mark.ABSENT, Mark.ABSENT, Mark.ABSENT, Mark.ABSENT))       //wordToGuess: arson
+        );
     }
 }
