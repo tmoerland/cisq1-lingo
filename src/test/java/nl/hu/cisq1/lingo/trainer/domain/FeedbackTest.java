@@ -33,6 +33,15 @@ public class FeedbackTest {
         assertThrows(InvalidFeedbackException.class, () -> new Feedback(List.of(Mark.CORRECT), "apple"));
     }
 
+    @Test
+    @DisplayName("Word is valid if none of the marks are 'INVALID'")
+    void wordIsValid() {
+        Feedback feedbackValid = new Feedback(List.of(Mark.CORRECT, Mark.CORRECT, Mark.CORRECT, Mark.CORRECT, Mark.CORRECT), "apple");
+        Feedback feedbackInvalid = new Feedback(List.of(Mark.CORRECT, Mark.CORRECT, Mark.CORRECT, Mark.CORRECT, Mark.CORRECT, Mark.INVALID), "apples");
+        assertTrue(feedbackValid.isWordValid());
+        assertFalse(feedbackInvalid.isWordValid());
+    }
+
     @ParameterizedTest
     @MethodSource("provideHintExamples")
     @DisplayName("Give correct feedback based on input")
