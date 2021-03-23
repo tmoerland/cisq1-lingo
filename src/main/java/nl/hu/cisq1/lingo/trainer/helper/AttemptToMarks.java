@@ -1,7 +1,7 @@
 package nl.hu.cisq1.lingo.trainer.helper;
 
 import nl.hu.cisq1.lingo.trainer.domain.Mark;
-import nl.hu.cisq1.lingo.trainer.domain.exception.InvalidAttemptException;
+import nl.hu.cisq1.lingo.trainer.exception.InvalidAttemptException;
 
 import java.util.ArrayList;
 import java.util.List;

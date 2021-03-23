@@ -4,7 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import nl.hu.cisq1.lingo.trainer.domain.exception.InvalidFeedbackException;
+import nl.hu.cisq1.lingo.trainer.exception.InvalidFeedbackException;
 
 import java.util.List;
 

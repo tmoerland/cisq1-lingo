@@ -1,7 +1,11 @@
 package nl.hu.cisq1.lingo.trainer.domain;
 
 import lombok.Getter;
-import nl.hu.cisq1.lingo.words.domain.Word;
+import nl.hu.cisq1.lingo.trainer.exception.RoundException;
+import nl.hu.cisq1.lingo.trainer.helper.AttemptToMarks;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 public class Round {
