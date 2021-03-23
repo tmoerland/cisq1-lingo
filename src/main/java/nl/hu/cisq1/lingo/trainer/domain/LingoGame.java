@@ -6,6 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class LingoGame {
+    private Long id;
     private int score;
     private int hints;
     private int numberOfRounds;
@@ -19,4 +20,5 @@ public class LingoGame {
         this.round = round;
         this.status = status;
     }
+
 }
