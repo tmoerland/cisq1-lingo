@@ -47,7 +47,7 @@ public class FeedbackTest {
     @DisplayName("Give correct feedback based on input")
     void giveHint(String attempt, String expectedHint, List<Mark> marks) {
         Feedback feedback = new Feedback(marks, attempt);
-        assertEquals(expectedHint, feedback.giveHint(".....")); //Starting with an "empty" first hint
+        assertEquals(expectedHint, feedback.giveHint("a....")); //Starting with an "empty" first hint (first letter given)
     }
 
     static Stream<Arguments> provideHintExamples(){
@@ -55,7 +55,8 @@ public class FeedbackTest {
                 Arguments.of("apple", "apple", List.of(Mark.CORRECT, Mark.CORRECT, Mark.CORRECT, Mark.CORRECT, Mark.CORRECT)),  //wordToGuess: apple
                 Arguments.of("apple", "ap.l.", List.of(Mark.CORRECT, Mark.CORRECT, Mark.ABSENT, Mark.CORRECT, Mark.ABSENT)),    //wordToGuess: aptly
                 Arguments.of("apple", "a...e", List.of(Mark.CORRECT, Mark.PRESENT, Mark.ABSENT, Mark.ABSENT, Mark.CORRECT)),    //wordToGuess: alive
-                Arguments.of("apple", "a....", List.of(Mark.CORRECT, Mark.ABSENT, Mark.ABSENT, Mark.ABSENT, Mark.ABSENT))       //wordToGuess: arson
+                Arguments.of("apple", "a....", List.of(Mark.CORRECT, Mark.ABSENT, Mark.ABSENT, Mark.ABSENT, Mark.ABSENT)),      //wordToGuess: arson
+                Arguments.of("apple", "a....", List.of(Mark.ABSENT, Mark.ABSENT, Mark.ABSENT, Mark.ABSENT, Mark.ABSENT))        //wordToGuess: thorn
         );
     }
 }
