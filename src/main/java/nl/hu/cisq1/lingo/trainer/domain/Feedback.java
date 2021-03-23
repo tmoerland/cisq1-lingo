@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 import nl.hu.cisq1.lingo.trainer.exception.InvalidFeedbackException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -22,6 +23,22 @@ public class Feedback {
         if (this.marks.size() != this.attempt.length()){
             throw new InvalidFeedbackException();
         }
+    }
+
+    public static List<Mark> giveMarks(String wordToGuess, String attempt){
+        List<Mark> marks = new ArrayList<>();
+
+        for(int i = 0; i < wordToGuess.length(); i++){
+            if(wordToGuess.charAt(i) == attempt.charAt(i)) {
+                marks.add(Mark.CORRECT);
+            }
+            else if (wordToGuess.indexOf(attempt.charAt(i)) != -1) {  //if the attempt char does not occur, -1 is returned
+                marks.add(Mark.PRESENT);                              //so everything but -1 means the char is present
+            } else {
+                marks.add(Mark.ABSENT);
+            }
+        }
+        return marks;
     }
 
     public boolean isWordGuessed(){
